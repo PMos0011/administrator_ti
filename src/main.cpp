@@ -2,16 +2,17 @@
 #include "TCP_connection.h"
 #include "Functions.h"
 #include "DB_Menegement.h"
+#include <unistd.h>
 
 
 using namespace std;
 
 int main()
 {
-
+int a=0;
     while (true)
     {
-
+    //a++;
         string file_name;
         string short_name;
         int grp_id = -1;
@@ -47,13 +48,9 @@ int main()
 
             else if(option==1)
             {
-                cout<<"1"<<endl;
+
             }
 
-            else
-            {
-                cout<<"error: "<< option<<endl;
-            }
         }
     }
     return 0;

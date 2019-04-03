@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1554117932 source:/home/pi/Desktop/WorkPath/Administrator_TI/src/main.cpp
+1554294514 source:/home/pi/Desktop/WorkPath/Administrator_TI/src/main.cpp
 	<iostream>
 	"TCP_connection.h"
 	"Functions.h"
 	"DB_Menegement.h"
+	<unistd.h>
 
-1554116425 source:/home/pi/Desktop/WorkPath/Administrator_TI/src/TCP_connection.cpp
+1554294102 source:/home/pi/Desktop/WorkPath/Administrator_TI/src/TCP_connection.cpp
 	"TCP_connection.h"
 	<iostream>
 	<netinet/in.h>

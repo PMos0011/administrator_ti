@@ -22,26 +22,32 @@ bool TCP_listener(string &name, int &id, int &option)
     serverTCP.sin_family = AF_INET;
     serverTCP.sin_port=htons(SERVER_PORT);
     serverTCP.sin_addr.s_addr=htons(INADDR_ANY);
+    int reuse = 1;
 
-    const int socket_ = socket(AF_INET, SOCK_STREAM, 0);
+    int socket_ = socket(AF_INET, SOCK_STREAM, 0);
     if(socket_<0)
     {
+
         cout<<"Socket error"<<endl;
         return false;
     }
 
     socklen_t len = sizeof(serverTCP);
 
+    setsockopt(socket_, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse));
+
     if(bind (socket_,(struct sockaddr *)&serverTCP,len)<0)
     {
-        cout<<"Bind error"<<endl;
+        perror("Bind");
+        close(socket_);
         return false;
     }
+
 
     if(listen(socket_,1)<0)
     {
         return false;
-        cout<<"Listen error"<<endl;
+        perror("Listen error");
 
     }
 
@@ -52,7 +58,8 @@ bool TCP_listener(string &name, int &id, int &option)
 
     if(clnsck<=0)
     {
-        cout<<"Client error"<<endl;
+        perror("Client error");
+
         return false;
     }
 
@@ -60,7 +67,7 @@ bool TCP_listener(string &name, int &id, int &option)
 
     if(recv(clnsck,buffer, sizeof(buffer),0)<=0)
     {
-        cout<<"Recieve error"<<endl;
+        perror("Recieve error");
         return false;
     }
 
@@ -71,7 +78,7 @@ bool TCP_listener(string &name, int &id, int &option)
     send(clnsck,"0",1,0);
     if(recv(clnsck,buffer_name, sizeof(buffer_name),0)<=0)
     {
-        cout<<"Recieve error"<<endl;
+        perror("Recieve error");
         return false;
     }
 
@@ -89,7 +96,7 @@ bool TCP_listener(string &name, int &id, int &option)
         send(clnsck,"0",1,0);
         if(recv(clnsck,buffer, sizeof(buffer),0)<=0)
         {
-            cout<<"Recieve error"<<endl;
+            perror("Recieve error");
             return false;
         }
 
@@ -137,7 +144,6 @@ bool TCP_listener(string &name, int &id, int &option)
     if (code==1)
     {
         string path_s="/usr/TI/slides/"+tmp_msg+".zip";
-        //string path_s="/usr/TI/slides/test.txt";
 
         int file_s=fs::file_size(path_s);
         char file_data[file_s];
@@ -147,7 +153,7 @@ bool TCP_listener(string &name, int &id, int &option)
         file.read(file_data,file_s);
 
         int counter =0;
-        cout<<file_s<<endl;
+        //cout<<file_s<<endl;
         char buffor[64]= {};
         sprintf(buffor,"%d",file_s);
 
@@ -161,7 +167,7 @@ bool TCP_listener(string &name, int &id, int &option)
 
          if(recv(clnsck,buffer, 1,0)<=0)
         {
-            cout<<"Recieve error"<<endl;
+            perror("Recieve error");
             return false;
         }
             if(file_s - counter> 1024)
@@ -192,8 +198,7 @@ bool TCP_listener(string &name, int &id, int &option)
     }
 
     close(clnsck);
-    close (socket_);
-
+    close(socket_);
 
     return true;
 }
