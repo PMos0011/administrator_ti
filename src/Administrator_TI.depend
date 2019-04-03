@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1554054774 source:/home/pi/Desktop/WorkPath/Administrator_TI/src/main.cpp
+	<iostream>
+	"TCP_connection.h"
+	"Functions.h"
+	"DB_Menegement.h"
+
+1554116425 source:/home/pi/Desktop/WorkPath/Administrator_TI/src/TCP_connection.cpp
+	"TCP_connection.h"
+	<iostream>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<sys/socket.h>
+	<sys/types.h>
+	<stdlib.h>
+	<fstream>
+	<unistd.h>
+	<Functions.h>
+	<experimental/filesystem>
+	<cstdio>
+
+1553856219 /home/pi/Desktop/WorkPath/Administrator_TI/src/include/TCP_connection.h
+	<iostream>
+
+1554051871 source:/home/pi/Desktop/WorkPath/Administrator_TI/src/Functions.cpp
+	"Functions.h"
+	<iostream>
+	<zip.h>
+	<string>
+	<cstring>
+	<fstream>
+	<cstdint>
+	<experimental/filesystem>
+
+1554051871 /home/pi/Desktop/WorkPath/Administrator_TI/src/include/Functions.h
+	<iostream>
+
+1553887662 source:/home/pi/Desktop/WorkPath/Administrator_TI/src/DB_Menegement.cpp
+	"DB_Menegement.h"
+	<iostream>
+	<mysql/mysql.h>
+
+1553887662 /home/pi/Desktop/WorkPath/Administrator_TI/src/include/DB_Menegement.h
+	<iostream>
+
